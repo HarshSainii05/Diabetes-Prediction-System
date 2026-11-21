@@ -1,90 +1,149 @@
-# GlucoSense — Diabetes Prediction System
+# GlucoSense – Diabetes Prediction System
 
-**Author:** Harsh Saini  
-**Stack:** Python, Pandas, Scikit-learn, Streamlit, Plotly
+**A Machine Learning-Based Diabetes Risk Prediction Application**
 
-A modular machine-learning project that compares classification algorithms on the Pima Indians Diabetes dataset and provides both a command-line workflow and a separate Streamlit dashboard.
+GlucoSense is a Python-based machine learning project designed to predict the likelihood of diabetes using medical and health-related parameters. It applies data preprocessing, classification algorithms, and model evaluation techniques to analyze patient data and generate predictions.
 
-## Project structure
+The project demonstrates how machine learning can be applied to healthcare data analysis through a structured and modular implementation.
+
+## 👨‍💻 Author
+
+**Harsh Saini**  
+B.Tech – Computer Science and Engineering (AI & ML)  
+Manav Rachna International Institute of Research and Studies
+
+## 🚀 Key Features
+
+- Diabetes risk prediction using machine learning.
+- Data preprocessing and missing-value handling.
+- Comparison of multiple classification algorithms.
+- Model training and performance evaluation.
+- Data visualization and analysis.
+- User-friendly Streamlit interface.
+- Modular and maintainable Python code structure.
+
+## 🛠️ Technologies Used
+
+- **Programming Language:** Python
+- **Machine Learning:** Scikit-learn
+- **Data Processing:** Pandas, NumPy
+- **Data Visualization:** Matplotlib, Seaborn
+- **Web Interface:** Streamlit
+- **Model Persistence:** Joblib
+
+## 📊 Dataset
+
+The project uses the Pima Indians Diabetes Dataset, containing medical attributes such as:
+
+- Pregnancies
+- Glucose
+- Blood Pressure
+- Skin Thickness
+- Insulin
+- BMI
+- Diabetes Pedigree Function
+- Age
+
+The target variable, `Outcome`, indicates whether diabetes was recorded in the dataset.
+
+## 📁 Project Structure
 
 ```text
-dsp/
-├── app.py                  # Streamlit interface only
-├── main.py                 # CLI entry point / workflow orchestration
-├── config.py               # Paths and project configuration
-├── requirements.txt
-├── README.md
+GlucoSense/
+│
 ├── data/
-│   └── diabetes.csv        # Downloaded automatically on first run
+│
 ├── models/
-│   └── best_model.joblib   # Saved after training
+│
 ├── outputs/
-│   ├── metrics.json
-│   ├── confusion_matrix.png
-│   ├── roc_curve.png
-│   └── correlation_heatmap.png
-└── src/
-    ├── data_loader.py      # Dataset loading and validation
-    ├── preprocessing.py    # Missing-value handling and scaling
-    ├── models.py           # Model definitions
-    ├── training.py         # Cross-validation, model selection, persistence
-    ├── evaluation.py      # Classification metrics
-    ├── prediction.py      # Single-record prediction
-    └── visualization.py   # Evaluation charts
+│
+├── src/
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── models.py
+│   ├── training.py
+│   ├── evaluation.py
+│   ├── prediction.py
+│   └── visualization.py
+│
+├── main.py
+├── app.py
+├── config.py
+├── requirements.txt
+└── README.md
 ```
 
-## Setup
+## ⚙️ Installation and Setup
+
+**1. Clone the repository**
 
 ```bash
-python -m venv .venv
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd GlucoSense
 ```
 
-Windows:
-```bash
-.venv\Scripts\activate
-```
-
-macOS/Linux:
-```bash
-source .venv/bin/activate
-```
-
-Install dependencies:
-```bash
-python -m pip install -r requirements.txt
-```
-
-## Run the machine-learning pipeline (without GUI)
+**2. Create a virtual environment**
 
 ```bash
-python main.py train
+py -3 -m venv .venv
 ```
 
-This downloads the dataset if needed, preprocesses the data, compares Logistic Regression, Random Forest, Extra Trees and Histogram Gradient Boosting using stratified 5-fold cross-validation, evaluates the selected model on a held-out test set, and saves the model and reports.
-
-## Make a prediction from the command line
-
-First run training, then:
+**3. Install dependencies**
 
 ```bash
-python main.py predict --pregnancies 2 --glucose 130 --blood-pressure 70 --skin-thickness 25 --insulin 90 --bmi 28.5 --pedigree 0.45 --age 35
+.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-## Run the separate dashboard
+## ▶️ Usage
+
+**Train the machine learning models**
 
 ```bash
-python -m streamlit run app.py
+.venv\Scripts\python.exe main.py train
 ```
 
-`app.py` contains presentation and user interaction only. Model logic is imported from `src/`; it is not duplicated in the interface.
+**Launch the Streamlit application**
 
-## Dataset
+```bash
+.venv\Scripts\python.exe -m streamlit run app.py
+```
 
-The project uses the Pima Indians Diabetes dataset, a commonly used educational benchmark with eight input features and a binary outcome. On first run, the CSV is fetched from the Plotly datasets GitHub repository and cached locally in `data/`. Internet access is required for the first download unless the CSV is supplied manually.
+**Generate a prediction using the command line**
 
-## Important notes on model quality
+```bash
+.venv\Scripts\python.exe main.py predict --pregnancies 2 --glucose 130 --blood-pressure 70 --skin-thickness 25 --insulin 90 --bmi 28.5 --pedigree 0.45 --age 35
+```
 
-- There is no honest way to guarantee a particular accuracy before evaluating the model on data.
-- The project selects a model using mean cross-validation ROC-AUC, then reports metrics on a separate hold-out test set.
-- Accuracy alone can be misleading when classes are imbalanced; review recall, precision, F1 and ROC-AUC together.
-- This dataset is limited and does not represent every population. Results are for academic demonstration only, not clinical diagnosis or treatment.
+## 📈 Model Evaluation
+
+The project evaluates classification models using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC
+- Confusion Matrix
+
+Multiple machine learning models are compared using cross-validation to support model selection.
+
+## 🔮 Future Improvements
+
+- Integration with larger and more diverse datasets.
+- Advanced machine learning and ensemble techniques.
+- Improved prediction explainability.
+- Enhanced dashboard and visualization features.
+- Deployment as a cloud-based application.
+
+## ⚠️ Disclaimer
+
+GlucoSense is an educational machine learning project. Its predictions are based on the dataset used for training and are not clinically validated. It must not be used as a substitute for professional medical advice, diagnosis, or treatment.
+
+## 📄 License
+
+This project is intended for educational and academic purposes. A formal open-source license can be added if the project is distributed under specific licensing terms.
+
+---
+
+**Developed by Harsh Saini**  
+*Machine Learning | Python | Healthcare Analytics*
