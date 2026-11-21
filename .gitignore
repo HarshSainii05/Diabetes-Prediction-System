@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.py[cod]
+models/
+outputs/*.png
+outputs/metrics.json
+data/diabetes.csv
